@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ootable-bin
+_pkgname=ootable
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Renders markdown, JSON, or CSV into auto-sized Unicode terminal grid tables."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ootable"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ootable')
+conflicts=('ootable')
+source_x86_64=("${url}/releases/download/v${pkgver}/ootable-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ootable-linux-x86_64" "${pkgdir}/usr/bin/ootable"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ootable-uninstall"
+}
